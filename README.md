@@ -92,11 +92,7 @@ These checks can be performed using the `ipc_muac_check()` function as
 follows:
 
 ``` r
-ipc_muac_check(
-  df = muac_data,
-  muac_units = "cm",
-  oedema_recode = c(1, 2)
-)
+ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
 #> # A tibble: 1 × 12
 #>   age_ratio age_ratio_p age_ratio_class sex_ratio sex_ratio_p sex_ratio_class
 #>       <dbl>       <dbl> <fct>               <dbl>       <dbl> <fct>          
