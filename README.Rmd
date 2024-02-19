@@ -65,11 +65,7 @@ For nutrition survey datasets that include MUAC measurements, the IPC recommends
 These checks can be performed using the `ipc_muac_check()` function as follows:
 
 ```{r ipc-checks}
-ipc_muac_check(
-  df = muac_data,
-  muac_units = "cm",
-  oedema_recode = c(1, 2)
-)
+ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
 ```
 
 
