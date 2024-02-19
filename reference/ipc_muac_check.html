@@ -77,7 +77,7 @@ child. The age of child should be in months.</p></dd>
 
 
 <dt>sex</dt>
-<dd><p>A character value for name of variale in <code>df</code> for sex of child.
+<dd><p>A character value for name of variable in <code>df</code> for sex of child.
 The expected values for <code>sex</code> is 1 = males; 2 = females. If data values
 are different, use <code>sex_recode</code> to map out the values to what is
 required.</p></dd>
@@ -85,7 +85,7 @@ required.</p></dd>
 
 <dt>sex_recode</dt>
 <dd><p>A vector of values with length of 2 with the first
-element for the value signifiying males and second element for the value
+element for the value signifying males and second element for the value
 signifying females in the dataset. For example, if "m" is the value for
 males and "f" is the value for females, then specify <code>c("m", "f)</code>. If
 set to NULL (default), then the values c(1, 2) are used.</p></dd>
@@ -112,7 +112,7 @@ oedema and 2 for no oedema. If data values are different, use
 
 <dt>oedema_recode</dt>
 <dd><p>A vector of values with length of 2 with the first
-element for the value signifiying presence of oedema and second element for
+element for the value signifying presence of oedema and second element for
 the value signifying no oedema in the dataset. For example, if "y" is the
 value for presence of oedema and "n" is the value for no oedema, then
 specify <code>c("y", "n)</code>. If set to NULL (default), then the values c(1, 0)
@@ -121,7 +121,7 @@ are used.</p></dd>
 
 <dt>.summary</dt>
 <dd><p>Logical. Should output be a summary of all the checks
-peformed on the MUAC dataset? If TRUE (default), output will be a single
+performed on the MUAC dataset? If TRUE (default), output will be a single
 row data.frame with each column for each metric used to check MUAC
 dataset. If FALSE, a data.frame with same number of rows as <code>df</code> and
 columns for each metric used to check MUAC dataset is added to <code>df</code>.
@@ -131,7 +131,7 @@ prevalence).</p></dd>
 
 
 <dt>.list</dt>
-<dd><p>Logical. Relevent only if <code>.summary</code> is TRUE. Should summary be
+<dd><p>Logical. Relevant only if <code>.summary</code> is TRUE. Should summary be
 given in list format? If TRUE (default), then the output is in list format
 otherwise a data.frame is provided.</p></dd>
 
@@ -157,8 +157,8 @@ used to check MUAC dataset is added to <code>df</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7.785732e-113</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`Age Ratio`$class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Problematic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Levels: Problematic Poor Acceptable Excellent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Age Ratio Class </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   "Problematic" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`Sex Ratio`</span>
@@ -170,8 +170,8 @@ used to check MUAC dataset is added to <code>df</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8479104</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`Sex Ratio`$class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Excellent</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Levels: Problematic Poor Acceptable Excellent</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sex Ratio Class </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     "Excellent" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`Digit Preference`</span>
@@ -188,8 +188,8 @@ used to check MUAC dataset is added to <code>df</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 12.45931</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`Standard Deviation`$class</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] Excellent</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Levels: Excellent Acceptable Poor Problematic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    SD Class </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "Excellent" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="The Integrated Food Security Phase Classification (IPC) is a widely 
-    used tool for classifying and analyzing the severity and magnitude of food 
+    used tool for classifying and analysing the severity and magnitude of food 
     insecurity and malnutrition situations in various countries and regions 
     around the world. It provides a common understanding of the food security 
     situation and enables decision-makers to take appropriate actions to 
@@ -21,7 +21,7 @@
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Utilities to Support Integrated Food Security Phase Classification (IPC) 
     Data Analysis and Visualisation">
 <meta property="og:description" content="The Integrated Food Security Phase Classification (IPC) is a widely 
-    used tool for classifying and analyzing the severity and magnitude of food 
+    used tool for classifying and analysing the severity and magnitude of food 
     insecurity and malnutrition situations in various countries and regions 
     around the world. It provides a common understanding of the food security 
     situation and enables decision-makers to take appropriate actions to 
@@ -76,12 +76,12 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The <a href="https://www.ipcinfo.org/" class="external-link">Integrated Food Security Phase Classification (IPC)</a> is a widely used tool for classifying and analyzing the severity and magnitude of food insecurity and malnutrition situations in various countries and regions around the world. It provides a common understanding of the food security situation and enables decision-makers to take appropriate actions to mitigate and respond to food crises. This package provides functions and utilities that support IPC-related data analysis and visualisation.</p>
+<p>The <a href="https://www.ipcinfo.org/" class="external-link">Integrated Food Security Phase Classification (IPC)</a> is a widely used tool for classifying and analysing the severity and magnitude of food insecurity and malnutrition situations in various countries and regions around the world. It provides a common understanding of the food security situation and enables decision-makers to take appropriate actions to mitigate and respond to food crises. This package provides functions and utilities that support IPC-related data analysis and visualisation.</p>
 <div class="section level2">
 <h2 id="what-does-ipctools-do">What does <code>ipctools</code> do?<a class="anchor" aria-label="anchor" href="#what-does-ipctools-do"></a>
 </h2>
 <p>Please note that <code>ipctools</code> is still highly experimental and is undergoing a lot of development. Hence, any functionalities described below have a high likelihood of changing interface or approach as we aim for a stable working version.</p>
-<p>Currently, the package provides utility functions that support the processing, validation, and analysis of acute malnutrition datasets based on IPC data standards and recommendations. Over time, it is aimed that other similar data procesing, validation, and analysis steps recommended by IPC on datasets for acute food insecurity and chronic food insecurity can be incorporated.</p>
+<p>Currently, the package provides utility functions that support the processing, validation, and analysis of acute malnutrition datasets based on IPC data standards and recommendations. Over time, it is aimed that other similar data processing, validation, and analysis steps recommended by IPC on datasets for acute food insecurity and chronic food insecurity can be incorporated.</p>
 <p>In addition, it is planned to include a set of functions that would wrap around the <a href="https://www.ipcinfo.org/ipc-country-analysis/api/" class="external-link">IPC-CH API</a> enabling programmatic access to available resources from the IPC for researchers and analysts who use R. For this purpose, a formal request for access to the API has been submitted. Approval of this request will determine whether this plan will come to fruition.</p>
 </div>
 <div class="section level2">
@@ -108,7 +108,7 @@
 <li><p><strong>Age ratio test</strong> - The ratio between those whose age is less than 30 months to those who are 30 months and above.</p></li>
 <li><p><strong>Sex ratio test</strong> - The male to female sex ratio test checks whether the ratio of the number of males to the number of females in a survey sample is similar to an expected ratio. It is usually assumed that there should be equal numbers of males and females in the survey sample.</p></li>
 <li><p><strong>Digit preference score</strong> - Digit preference is the observation that the final number in a measurement occurs with a greater frequency than is expected by chance. This can occur because of rounding, the practice of increasing or decreasing the value in a measurement to the nearest whole or half unit, or because data are made up.</p></li>
-<li><p><strong>Standard deviation</strong> - The stanard deviation of the MUAC measurements.</p></li>
+<li><p><strong>Standard deviation</strong> - The standard deviation of the MUAC measurements.</p></li>
 </ol>
 <p>These checks can be performed using the <code><a href="reference/ipc_muac_check.html">ipc_muac_check()</a></code> function as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
