@@ -11,8 +11,10 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/nutriverse/ipctools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nutriverse/ipctools/actions/workflows/R-CMD-check.yaml)
+[![test-coverage](https://github.com/nutriverse/ipctools/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/nutriverse/ipctools/actions/workflows/test-coverage.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/nutriverse/ipctools/branch/main/graph/badge.svg)](https://app.codecov.io/gh/nutriverse/ipctools?branch=main)
+[![CodeFactor](https://www.codefactor.io/repository/github/nutriverse/ipctools/badge)](https://www.codefactor.io/repository/github/nutriverse/ipctools)
 <!-- badges: end -->
 
 The [Integrated Food Security Phase Classification

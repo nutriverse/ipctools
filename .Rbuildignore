@@ -5,3 +5,7 @@
 ^\.github$
 ^data-raw$
 ^codecov\.yml$
+^pkgdown/_pkgdown\.yml$
+^docs$
+^pkgdown$
+^_pkgdown\.yml$

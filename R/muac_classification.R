@@ -1,5 +1,6 @@
 #'
-#' Utility functions that support the main functions in the package
+#' Classification functions that support the main functions for working with
+#' MUAC datasets
 #'
 #' @param p Numeric value for p-value of a statistical test used in the
 #'   various checks applied.
@@ -36,7 +37,7 @@
 #' age_ratio_p <- nipnTK::ageRatioTest(as.integer(!is.na(muac_data$age)))$p
 #' classify_age_ratio(age_ratio_p)
 #'
-#' @rdname ipc_class
+#' @rdname ipc_muac_class
 #' @export
 #'
 #'
