@@ -1,0 +1,16 @@
+citHeader("To cite ipctools in publications use:")
+
+citEntry(
+  entry    = "Manual",
+  title    = "ipctools: Utilities to Support Integrated Food Security Phase Classification (IPC) Data Analysis and Visualisation",
+  author   = c(person("Tomas Zaba"),  person("Ernest Guevarra")),
+  year     = "2024",
+  note     = "R package version 0.0.9000",
+  url      = "https://nutriverse.io/ipctools/",
+  textVersion = paste(
+    paste("Tomas Zaba and Ernest Guevarra (2024).",
+          "ipctools: Utilities to Support Integrated Food Security Phase Classification (IPC) Data Analysis and Visualisation.",
+          "R package version 0.0.9000.",
+          "URL https://nutriverse.io/ipctools/")
+  )
+)

@@ -1,0 +1,32 @@
+Package: ipctools
+Type: Package
+Title: Utilities to Support Integrated Food Security Phase Classification (IPC) 
+    Data Analysis and Visualisation
+Version: 0.0.0.9000
+Authors@R: c(
+    person("Tomas", "Zaba", email = "",
+           role = c("aut", "cph")),
+    person("Ernest", "Guevarra", 
+           comment = c(ORCID = "0000-0002-4887-4415"), 
+           email = "ernest@guevarra.io", role = c("aut", "cre", "cph")))
+Description: The Integrated Food Security Phase Classification (IPC) is a widely 
+    used tool for classifying and analyzing the severity and magnitude of food 
+    insecurity and malnutrition situations in various countries and regions 
+    around the world. It provides a common understanding of the food security 
+    situation and enables decision-makers to take appropriate actions to 
+    mitigate and respond to food crises. This package provides functions and
+    utilities that support IPC-related data analysis and visualisation.
+License: GPL (>= 3)
+Depends: 
+    R (>= 2.10)
+Imports: 
+    dplyr,
+    nipnTK,
+    rlang
+Encoding: UTF-8
+LazyData: true
+Language: en-GB
+RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE)
+URL: https://nutriverse.io/ipctools/, https://github.com/nutriverse/ipctools
+BugReports: https://github.com/nutriverse/ipctools/issues
