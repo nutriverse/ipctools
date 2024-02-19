@@ -42,7 +42,7 @@ oedema. If data values are different, use \code{oedema_recode} to map out the
 values to what is required.}
 
 \item{oedema_recode}{A vector of values with length of 2 with the first
-element for the value signifiying presence of oedema and second element for
+element for the value signifying presence of oedema and second element for
 the value signifying no oedema in the dataset. For example, if "y" is the
 value for presence of oedema and "n" is the value for no oedema, then
 specify \verb{c("y", "n)}. If set to NULL (default), then the values c(1, 0)
@@ -59,7 +59,7 @@ values for \code{sex} is 1 = males; 2 = females. If data values are different,
 use \code{sex_recode} to map out the values to what is required.}
 
 \item{sex_recode}{A vector of values with length of 2 with the first
-element for the value signifiying males and second element for the value
+element for the value signifying males and second element for the value
 signifying females in the dataset. For example, if "m" is the value for
 males and "f" is the value for females, then specify \verb{c("m", "f)}. If
 set to NULL (default), then the values c(1, 2) are used.}

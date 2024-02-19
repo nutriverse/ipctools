@@ -8,7 +8,7 @@
 Analysis and Visualisation}
 \description{
 The Integrated Food Security Phase Classification (IPC) is a widely used tool
-for classifying and analyzing the severity and magnitude of food insecurity
+for classifying and analysing the severity and magnitude of food insecurity
 and malnutrition situations in various countries and regions around the
 world. It provides a common understanding of the food security situation and
 enables decision-makers to take appropriate actions to mitigate and respond
@@ -20,6 +20,7 @@ Useful links:
 \itemize{
   \item \url{https://nutriverse.io/ipctools/}
   \item \url{https://github.com/nutriverse/ipctools}
+  \item \url{http://nutriverse.io/ipctools/}
   \item Report bugs at \url{https://github.com/nutriverse/ipctools/issues}
 }
 

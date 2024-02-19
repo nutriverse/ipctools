@@ -19,7 +19,7 @@ coverage](https://codecov.io/gh/nutriverse/ipctools/branch/main/graph/badge.svg)
 
 The [Integrated Food Security Phase Classification
 (IPC)](https://www.ipcinfo.org/) is a widely used tool for classifying
-and analyzing the severity and magnitude of food insecurity and
+and analysing the severity and magnitude of food insecurity and
 malnutrition situations in various countries and regions around the
 world. It provides a common understanding of the food security situation
 and enables decision-makers to take appropriate actions to mitigate and
@@ -36,7 +36,7 @@ for a stable working version.
 Currently, the package provides utility functions that support the
 processing, validation, and analysis of acute malnutrition datasets
 based on IPC data standards and recommendations. Over time, it is aimed
-that other similar data procesing, validation, and analysis steps
+that other similar data processing, validation, and analysis steps
 recommended by IPC on datasets for acute food insecurity and chronic
 food insecurity can be incorporated.
 
@@ -90,7 +90,7 @@ recommends that the following tests be performed:
     measurement to the nearest whole or half unit, or because data are
     made up.
 
-4.  **Standard deviation** - The stanard deviation of the MUAC
+4.  **Standard deviation** - The standard deviation of the MUAC
     measurements.
 
 These checks can be performed using the `ipc_muac_check()` function as

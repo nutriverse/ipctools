@@ -27,13 +27,13 @@ MUAC of each child}
 \item{age}{A character value for name of variable in \code{df} for age of
 child. The age of child should be in months.}
 
-\item{sex}{A character value for name of variale in \code{df} for sex of child.
+\item{sex}{A character value for name of variable in \code{df} for sex of child.
 The expected values for \code{sex} is 1 = males; 2 = females. If data values
 are different, use \code{sex_recode} to map out the values to what is
 required.}
 
 \item{sex_recode}{A vector of values with length of 2 with the first
-element for the value signifiying males and second element for the value
+element for the value signifying males and second element for the value
 signifying females in the dataset. For example, if "m" is the value for
 males and "f" is the value for females, then specify \verb{c("m", "f)}. If
 set to NULL (default), then the values c(1, 2) are used.}
@@ -52,14 +52,14 @@ oedema and 2 for no oedema. If data values are different, use
 \code{oedema_recode} to map out the values to what is required.}
 
 \item{oedema_recode}{A vector of values with length of 2 with the first
-element for the value signifiying presence of oedema and second element for
+element for the value signifying presence of oedema and second element for
 the value signifying no oedema in the dataset. For example, if "y" is the
 value for presence of oedema and "n" is the value for no oedema, then
 specify \verb{c("y", "n)}. If set to NULL (default), then the values c(1, 0)
 are used.}
 
 \item{.summary}{Logical. Should output be a summary of all the checks
-peformed on the MUAC dataset? If TRUE (default), output will be a single
+performed on the MUAC dataset? If TRUE (default), output will be a single
 row data.frame with each column for each metric used to check MUAC
 dataset. If FALSE, a data.frame with same number of rows as \code{df} and
 columns for each metric used to check MUAC dataset is added to \code{df}.
@@ -67,7 +67,7 @@ Setting \code{.summary} to FALSE is usually only used for when the output
 structure is required for further analysis (i.e., calculation of
 prevalence).}
 
-\item{.list}{Logical. Relevent only if \code{.summary} is TRUE. Should summary be
+\item{.list}{Logical. Relevant only if \code{.summary} is TRUE. Should summary be
 given in list format? If TRUE (default), then the output is in list format
 otherwise a data.frame is provided.}
 }
