@@ -30,3 +30,5 @@ RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 URL: https://nutriverse.io/ipctools/, https://github.com/nutriverse/ipctools
 BugReports: https://github.com/nutriverse/ipctools/issues
+Suggests: 
+    covr
