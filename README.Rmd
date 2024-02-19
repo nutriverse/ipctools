@@ -18,6 +18,10 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/nutriverse/ipctools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/nutriverse/ipctools/actions/workflows/R-CMD-check.yaml)
+[![test-coverage](https://github.com/nutriverse/ipctools/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/nutriverse/ipctools/actions/workflows/test-coverage.yaml)
+[![Codecov test coverage](https://codecov.io/gh/nutriverse/ipctools/branch/main/graph/badge.svg)](https://app.codecov.io/gh/nutriverse/ipctools?branch=main)
+[![CodeFactor](https://www.codefactor.io/repository/github/nutriverse/ipctools/badge)](https://www.codefactor.io/repository/github/nutriverse/ipctools)
 <!-- badges: end -->
 
 The [Integrated Food Security Phase Classification (IPC)](https://www.ipcinfo.org/) is a widely used tool for classifying and analyzing the severity and magnitude of food insecurity and malnutrition situations in various countries and regions around the world. It provides a common understanding of the food security situation and enables decision-makers to take appropriate actions to mitigate and respond to food crises. This package provides functions and utilities that support IPC-related data analysis and visualisation.
@@ -68,6 +72,18 @@ These checks can be performed using the `ipc_muac_check()` function as follows:
 ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
 ```
 
+### Calculating acute malnutrition prevalence on a MUAC dataset
+
+The IPC-recommended approach to calculating prevalence of acute malnutrition based on MUAC is to perform a weighted analysis when either the age ratio test or the sex ratio test is problematic. For example, based on the MUAC check shown above, the example dataset `muac_data` has some issues with its age ratio and sex ratio. To calculate acute malnutrition prevalence from this dataset, a weighted analysis will have to be implemented. This can be done using the `ipc_calculate_prevalence()` function as follows:
+
+```{r ipc-prevalence}
+ipc_muac_check(
+  df = muac_data, muac_units = "cm", 
+  oedema_recode = c(1, 2), 
+  .summary = FALSE
+) |>
+  ipc_calculate_prevalence()
+```
 
 ## Citation
 

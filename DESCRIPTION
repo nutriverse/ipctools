@@ -28,5 +28,9 @@ LazyData: true
 Language: en-GB
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
-URL: https://nutriverse.io/ipctools/, https://github.com/nutriverse/ipctools
+URL: https://nutriverse.io/ipctools/,
+    https://github.com/nutriverse/ipctools,
+    http://nutriverse.io/ipctools/
 BugReports: https://github.com/nutriverse/ipctools/issues
+Suggests: 
+    covr

@@ -1,6 +1,9 @@
 #'
 #' Calculate wasting prevalence by MUAC
 #'
+#' @param df A data.frame for a MUAC dataset on which appropriate checks have
+#'   been applied already produced via a call to `ipc_muac_check()` with the
+#'   `.summary` argument set to FALSE.
 #' @param age A numeric or integer value or vector of values for age of child.
 #'   The age of child should be in months.
 #' @param sex A value or a vector of values for sex of child. The expected
@@ -27,9 +30,6 @@
 #'   value for presence of oedema and "n" is the value for no oedema, then
 #'   specify `c("y", "n)`. If set to NULL (default), then the values c(1, 0)
 #'   are used.
-#' @param quality_class A vector or character values indicating the
-#'   classification of the quality of the MUAC dataset. This is usually
-#'   created from applying the `ipc_muac_check()` function.
 #' @param status Which wasting anthropometric indicator to report. A choice
 #'   between c("sam", "mam"). Default to "sam"
 #'
@@ -42,19 +42,14 @@
 #'   status = "sam"
 #' )
 #'
-#' df <- ipc_muac_check(
+#' ipc_muac_check(
 #'   muac_data, age = "age", sex = "sex",
 #'   muac = "muac", muac_units = "cm",
 #'   oedema = "oedema", oedema_recode = c(1, 2),
 #'   .summary = FALSE
-#' )
+#' ) |>
+#' ipc_calculate_prevalence()
 #'
-#' with(df,
-#'   calculate_prevalence(
-#'     age = age, sex = sex, muac = muac,
-#'     oedema = oedema, quality_class = quality_class
-#'   )
-#' )
 #'
 #' @rdname ipc_prevalence
 #' @export
@@ -144,29 +139,22 @@ calculate_weighted_prevalence <- function(age,
 #'
 
 ## Function to calculate prevalence (weighted or unweighted as appropriate) ----
-calculate_prevalence <- function(age,
-                                 sex,
-                                 sex_recode = NULL,
-                                 muac,
-                                 muac_units = c("mm", "cm"),
-                                 oedema,
-                                 oedema_recode = NULL,
-                                 quality_class,
-                                 status = c("sam", "mam")) {
+ipc_calculate_prevalence <- function(df,
+                                     status = c("sam", "mam")) {
   ## Get nut status to work on ----
   status <- match.arg(status)
 
   ## Calculate prevalence data.frame ----
-  prevalence <- data.frame(age, sex, muac, oedema, quality_class) |>
+  prevalence <- df |>
     dplyr::summarise(
-      quality_class = unique(quality_class),
+      quality_class = unique(.data$quality_class),
       unweighted_prevalence = calculate_unweighted_prevalence(
-        muac = muac, oedema = oedema, status = status
+        muac = .data$muac, oedema = .data$oedema, status = status
       ),
       weighted_prevalence = calculate_weighted_prevalence(
-        age = age, sex = sex, sex_recode = sex_recode,
-        muac = muac, muac_units = muac_units,
-        oedema = oedema, oedema_recode = oedema_recode, status = status
+        age = .data$age, sex = .data$sex,
+        muac = .data$muac, oedema = .data$oedema,
+        status = status
       ),
       .groups = "drop"
     ) |>

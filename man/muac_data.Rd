@@ -6,16 +6,15 @@
 \title{Nutrition survey data with MUAC and oedema measurements and location
 information anonymised.}
 \format{
-A data frame with 6 columns and 435 rows:
-
-| **Variable** | **Description** |
-| :--- | :--- |
-| *state_name* | Name of state |
-| *district_name* | Name of district |
-| *age* | Age of child in months |
-| *sex* | Sex of child. 1 = male; 2 = female |
-| *muac* | Mid-upper arm circumference (MUAC) measurement in centimetres |
-| *oedema* | Presence or absence of oedema. 1 = oedema; 2 = no oedema |
+A data frame with 6 columns and 435 rows:\tabular{ll}{
+   \strong{Variable} \tab \strong{Description} \cr
+   \emph{state_name} \tab Name of state \cr
+   \emph{district_name} \tab Name of district \cr
+   \emph{age} \tab Age of child in months \cr
+   \emph{sex} \tab Sex of child. 1 = male; 2 = female \cr
+   \emph{muac} \tab Mid-upper arm circumference (MUAC) measurement in centimetres \cr
+   \emph{oedema} \tab Presence or absence of oedema. 1 = oedema; 2 = no oedema \cr
+}
 }
 \usage{
 muac_data

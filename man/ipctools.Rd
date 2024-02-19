@@ -15,6 +15,15 @@ enables decision-makers to take appropriate actions to mitigate and respond
 to food crises. This package provides functions and utilities that support
 IPC-related data analysis and visualisation.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://nutriverse.io/ipctools/}
+  \item \url{https://github.com/nutriverse/ipctools}
+  \item Report bugs at \url{https://github.com/nutriverse/ipctools/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Ernest Guevarra \email{ernest@guevarra.io} (\href{https://orcid.org/0000-0002-4887-4415}{ORCID}) [copyright holder]
 
