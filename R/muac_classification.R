@@ -25,7 +25,7 @@
 #'   oedema. If data values are different, use `oedema_recode` to map out the
 #'   values to what is required.
 #' @param oedema_recode A vector of values with length of 2 with the first
-#'   element for the value signifiying presence of oedema and second element for
+#'   element for the value signifying presence of oedema and second element for
 #'   the value signifying no oedema in the dataset. For example, if "y" is the
 #'   value for presence of oedema and "n" is the value for no oedema, then
 #'   specify `c("y", "n)`. If set to NULL (default), then the values c(1, 0)
@@ -47,11 +47,13 @@ classify_age_ratio <- function(p) {
     breaks = c(-Inf, 0.001, 0.05, 0.01, Inf),
     labels = c("Problematic", "Poor", "Acceptable", "Excellent"),
     include.lowest = FALSE, right = TRUE
-  )
+  ) |>
+    as.character() |>
+    (\(x) { names(x) <- "Age Ratio Class"; x } )()
 }
 
 #'
-#' @rdname ipc_class
+#' @rdname ipc_muac_class
 #' @export
 #'
 
@@ -61,12 +63,14 @@ classify_sex_ratio <- function(p) {
     breaks = c(-Inf, 0.001, 0.05, 0.01, Inf),
     labels = c("Problematic", "Poor", "Acceptable", "Excellent"),
     include.lowest = FALSE, right = TRUE
-  )
+  ) |>
+    as.character() |>
+    (\(x) { names(x) <- "Sex Ratio Class"; x } )()
 }
 
 
 #'
-#' @rdname ipc_class
+#' @rdname ipc_muac_class
 #' @export
 #'
 
@@ -76,12 +80,14 @@ classify_sd <- function(std_dev) {
     breaks = c(-Inf, 13, 14, 15, Inf),
     labels = c("Excellent", "Acceptable", "Poor", "Problematic"),
     include.lowest = TRUE, right = FALSE
-  )
+  ) |>
+    as.character() |>
+    (\(x) { names(x) <- "SD Class"; x } )()
 }
 
 
 #'
-#' @rdname ipc_class
+#' @rdname ipc_muac_class
 #' @export
 #'
 
@@ -107,7 +113,7 @@ classify_quality <- function(age_ratio_class,
 
 
 #'
-#' @rdname ipc_class
+#' @rdname ipc_muac_class
 #' @export
 #'
 classify_acute_malnutrition <- function(muac,
