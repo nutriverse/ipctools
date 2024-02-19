@@ -93,13 +93,68 @@ follows:
 
 ``` r
 ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
-#> # A tibble: 1 × 12
-#>   age_ratio age_ratio_p age_ratio_class sex_ratio sex_ratio_p sex_ratio_class
-#>       <dbl>       <dbl> <fct>               <dbl>       <dbl> <fct>          
-#> 1       Inf   7.79e-113 Problematic         0.506       0.848 Excellent      
-#> # ℹ 6 more variables: digit_preference <dbl>, digit_preference_class <chr>,
-#> #   std_dev <dbl>, std_dev_class <fct>, quality_score <dbl>,
-#> #   quality_class <chr>
+#> $`Age Ratio`
+#> $`Age Ratio`$ratio
+#> [1] Inf
+#> 
+#> $`Age Ratio`$p
+#> [1] 7.785732e-113
+#> 
+#> $`Age Ratio`$class
+#> [1] Problematic
+#> Levels: Problematic Poor Acceptable Excellent
+#> 
+#> 
+#> $`Sex Ratio`
+#> $`Sex Ratio`$ratio
+#>         p 
+#> 0.5057471 
+#> 
+#> $`Sex Ratio`$p
+#> [1] 0.8479104
+#> 
+#> $`Sex Ratio`$class
+#> [1] Excellent
+#> Levels: Problematic Poor Acceptable Excellent
+#> 
+#> 
+#> $`Digit Preference`
+#> $`Digit Preference`$score
+#> [1] 16.35
+#> 
+#> $`Digit Preference`$class
+#> SMART DPS Class 
+#>    "Acceptable" 
+#> 
+#> 
+#> $`Standard Deviation`
+#> $`Standard Deviation`$std_dev
+#> [1] 12.45931
+#> 
+#> $`Standard Deviation`$class
+#> [1] Excellent
+#> Levels: Excellent Acceptable Poor Problematic
+```
+
+### Calculating acute malnutrition prevalence on a MUAC dataset
+
+The IPC-recommended approach to calculating prevalence of acute
+malnutrition based on MUAC is to perform a weighted analysis when either
+the age ratio test or the sex ratio test is problematic. For example,
+based on the MUAC check shown above, the example dataset `muac_data` has
+some issues with its age ratio and sex ratio. To calculate acute
+malnutrition prevalence from this dataset, a weighted analysis will have
+to be implemented. This can be done using the
+`ipc_calculate_prevalence()` function as follows:
+
+``` r
+ipc_muac_check(
+  df = muac_data, muac_units = "cm", 
+  oedema_recode = c(1, 2), 
+  .summary = FALSE
+) |>
+  ipc_calculate_prevalence()
+#> [1] 0.2179668
 ```
 
 ## Citation

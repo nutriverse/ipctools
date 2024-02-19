@@ -38,6 +38,9 @@
 #'   Setting `.summary` to FALSE is usually only used for when the output
 #'   structure is required for further analysis (i.e., calculation of
 #'   prevalence).
+#' @param .list Logical. Relevent only if `.summary` is TRUE. Should summary be
+#'   given in list format? If TRUE (default), then the output is in list format
+#'   otherwise a data.frame is provided.
 #'
 #' @return A data.frame with a single row with each column for each metric used
 #'   to check MUAC dataset if `.summary` is TRUE. If `.summary` is FALSE, a
@@ -59,7 +62,8 @@ ipc_muac_check <- function(df,
                            muac_units = c("mm", "cm"),
                            oedema = "oedema",
                            oedema_recode = NULL,
-                           .summary = TRUE) {
+                           .summary = TRUE,
+                           .list = TRUE) {
   ## Determine MUAC units ----
   muac_units <- match.arg(muac_units)
 
@@ -86,16 +90,53 @@ ipc_muac_check <- function(df,
     df <- df |> dplyr::mutate(muac = muac * 10)
   }
 
+#  if (.summary) {
+    summarise_muac_check(df, .summary = .summary, .list = .list)
+  # } else {
+  #   df |>
+  #     dplyr::mutate(
+  #       age_ratio = nipnTK::ageRatioTest(as.integer(!is.na(age)))$observedR,
+  #       age_ratio_p = nipnTK::ageRatioTest(as.integer(!is.na(age)))$p,
+  #       sex_ratio = nipnTK::sexRatioTest(sex, codes = c(1, 2))$pM,
+  #       sex_ratio_p = nipnTK::sexRatioTest(sex, codes = c(1, 2))$p,
+  #       digit_preference = nipnTK::digitPreference(muac, digits = 0)$dps,
+  #       digit_preference_class = nipnTK::digitPreference(muac, digits = 0)$dpsClass,
+  #       std_dev = stats::sd(muac, na.rm = TRUE),
+  #       age_ratio_class = classify_age_ratio(.data$age_ratio_p),
+  #       sex_ratio_class = classify_sex_ratio(.data$sex_ratio_p),
+  #       std_dev_class = classify_sd(.data$std_dev),
+  #       quality_score = classify_quality(
+  #         .data$age_ratio_class, .data$sex_ratio_class,
+  #         .data$std_dev_class, .data$digit_preference_class
+  #       )$q_score,
+  #       quality_class = classify_quality(
+  #         .data$age_ratio_class, .data$sex_ratio_class,
+  #         .data$std_dev_class, .data$digit_preference_class
+  #       )$q_class
+  #     ) |>
+  #     dplyr::relocate(.data$age_ratio_class, .after = "age_ratio_p") |>
+  #     dplyr::relocate(.data$sex_ratio_class, .after = "sex_ratio_p") |>
+  #     dplyr::relocate(.data$std_dev_class, .after = "std_dev")
+  # }
+}
+
+
+#'
+#' @rdname ipc_muac_check
+#' @export
+#'
+
+summarise_muac_check <- function(df, .summary = TRUE, .list = TRUE) {
   if (.summary) {
-    df |>
+    muac_check <- df |>
       dplyr::summarise(
-        age_ratio = nipnTK::ageRatioTest(as.integer(!is.na(age)))$observedR,
-        age_ratio_p = nipnTK::ageRatioTest(as.integer(!is.na(age)))$p,
-        sex_ratio = nipnTK::sexRatioTest(sex, codes = c(1, 2))$pM,
-        sex_ratio_p = nipnTK::sexRatioTest(sex, codes = c(1, 2))$p,
-        digit_preference = nipnTK::digitPreference(muac, digits = 0)$dps,
-        digit_preference_class = nipnTK::digitPreference(muac, digits = 0)$dpsClass,
-        std_dev = stats::sd(muac, na.rm = TRUE),
+        age_ratio = nipnTK::ageRatioTest(as.integer(!is.na(.data$age)))$observedR,
+        age_ratio_p = nipnTK::ageRatioTest(as.integer(!is.na(.data$age)))$p,
+        sex_ratio = nipnTK::sexRatioTest(.data$sex, codes = c(1, 2))$pM,
+        sex_ratio_p = nipnTK::sexRatioTest(.data$sex, codes = c(1, 2))$p,
+        digit_preference = nipnTK::digitPreference(.data$muac, digits = 0)$dps,
+        digit_preference_class = nipnTK::digitPreference(.data$muac, digits = 0)$dpsClass,
+        std_dev = stats::sd(.data$muac, na.rm = TRUE),
         age_ratio_class = classify_age_ratio(.data$age_ratio_p),
         sex_ratio_class = classify_sex_ratio(.data$sex_ratio_p),
         std_dev_class = classify_sd(.data$std_dev),
@@ -111,16 +152,41 @@ ipc_muac_check <- function(df,
       dplyr::relocate(.data$age_ratio_class, .after = "age_ratio_p") |>
       dplyr::relocate(.data$sex_ratio_class, .after = "sex_ratio_p") |>
       dplyr::relocate(.data$std_dev_class, .after = "std_dev")
+
+    if (.list) {
+      muac_check <- list(
+        `Age Ratio` = list(
+          ratio = muac_check$age_ratio,
+          p = muac_check$age_ratio_p,
+          class = muac_check$age_ratio_class
+        ),
+        `Sex Ratio` = list(
+          ratio = muac_check$sex_ratio,
+          p = muac_check$sex_ratio_p,
+          class = muac_check$sex_ratio_class
+        ),
+        `Digit Preference` = list(
+          score = muac_check$digit_preference,
+          class = muac_check$digit_preference_class
+        ),
+        `Standard Deviation` = list(
+          std_dev = muac_check$std_dev,
+          class = muac_check$std_dev_class
+        )
+      )
+    } else {
+      muac_check
+    }
   } else {
-    df |>
+    muac_check <- df |>
       dplyr::mutate(
-        age_ratio = nipnTK::ageRatioTest(as.integer(!is.na(age)))$observedR,
-        age_ratio_p = nipnTK::ageRatioTest(as.integer(!is.na(age)))$p,
-        sex_ratio = nipnTK::sexRatioTest(sex, codes = c(1, 2))$pM,
-        sex_ratio_p = nipnTK::sexRatioTest(sex, codes = c(1, 2))$p,
-        digit_preference = nipnTK::digitPreference(muac, digits = 0)$dps,
-        digit_preference_class = nipnTK::digitPreference(muac, digits = 0)$dpsClass,
-        std_dev = stats::sd(muac, na.rm = TRUE),
+        age_ratio = nipnTK::ageRatioTest(as.integer(!is.na(.data$age)))$observedR,
+        age_ratio_p = nipnTK::ageRatioTest(as.integer(!is.na(.data$age)))$p,
+        sex_ratio = nipnTK::sexRatioTest(.data$sex, codes = c(1, 2))$pM,
+        sex_ratio_p = nipnTK::sexRatioTest(.data$sex, codes = c(1, 2))$p,
+        digit_preference = nipnTK::digitPreference(.data$muac, digits = 0)$dps,
+        digit_preference_class = nipnTK::digitPreference(.data$muac, digits = 0)$dpsClass,
+        std_dev = stats::sd(.data$muac, na.rm = TRUE),
         age_ratio_class = classify_age_ratio(.data$age_ratio_p),
         sex_ratio_class = classify_sex_ratio(.data$sex_ratio_p),
         std_dev_class = classify_sd(.data$std_dev),
@@ -137,4 +203,8 @@ ipc_muac_check <- function(df,
       dplyr::relocate(.data$sex_ratio_class, .after = "sex_ratio_p") |>
       dplyr::relocate(.data$std_dev_class, .after = "std_dev")
   }
+
+  ## Return muac_check ----
+  muac_check
 }
+

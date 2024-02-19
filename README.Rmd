@@ -68,6 +68,18 @@ These checks can be performed using the `ipc_muac_check()` function as follows:
 ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
 ```
 
+### Calculating acute malnutrition prevalence on a MUAC dataset
+
+The IPC-recommended approach to calculating prevalence of acute malnutrition based on MUAC is to perform a weighted analysis when either the age ratio test or the sex ratio test is problematic. For example, based on the MUAC check shown above, the example dataset `muac_data` has some issues with its age ratio and sex ratio. To calculate acute malnutrition prevalence from this dataset, a weighted analysis will have to be implemented. This can be done using the `ipc_calculate_prevalence()` function as follows:
+
+```{r ipc-prevalence}
+ipc_muac_check(
+  df = muac_data, muac_units = "cm", 
+  oedema_recode = c(1, 2), 
+  .summary = FALSE
+) |>
+  ipc_calculate_prevalence()
+```
 
 ## Citation
 

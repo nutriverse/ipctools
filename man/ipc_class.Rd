@@ -44,22 +44,22 @@ the digit preference score (DPS)}
 
 \item{muac}{A numeric value or vector of numeric values for MUAC measurement
 of child. The expected values for MUAC are in millimetres. If units are
-different, use `muac_units` to specify which units are used.}
+different, use \code{muac_units} to specify which units are used.}
 
 \item{muac_units}{A character value for units used for MUAC measurement.
 Currently accepts either "mm" for millimetres (default) or "cm" for
 centimetres.}
 
 \item{oedema}{A value or a vector of values for oedema status of child. The
-expected values for `oedema` is 1 = for presence of oedema and 2 for no
-oedema. If data values are different, use `oedema_recode` to map out the
+expected values for \code{oedema} is 1 = for presence of oedema and 2 for no
+oedema. If data values are different, use \code{oedema_recode} to map out the
 values to what is required.}
 
 \item{oedema_recode}{A vector of values with length of 2 with the first
 element for the value signifiying presence of oedema and second element for
 the value signifying no oedema in the dataset. For example, if "y" is the
 value for presence of oedema and "n" is the value for no oedema, then
-specify `c("y", "n)`. If set to NULL (default), then the values c(1, 0)
+specify \verb{c("y", "n)}. If set to NULL (default), then the values c(1, 0)
 are used.}
 }
 \value{
