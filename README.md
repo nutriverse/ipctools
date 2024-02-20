@@ -106,8 +106,7 @@ ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
 #> [1] 7.785732e-113
 #> 
 #> $`Age Ratio`$class
-#> [1] Problematic
-#> Levels: Problematic Poor Acceptable Excellent
+#> [1] "Problematic"
 #> 
 #> 
 #> $`Sex Ratio`
@@ -119,8 +118,7 @@ ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
 #> [1] 0.8479104
 #> 
 #> $`Sex Ratio`$class
-#> [1] Excellent
-#> Levels: Problematic Poor Acceptable Excellent
+#> [1] "Excellent"
 #> 
 #> 
 #> $`Digit Preference`
@@ -128,8 +126,7 @@ ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
 #> [1] 16.35
 #> 
 #> $`Digit Preference`$class
-#> SMART DPS Class 
-#>    "Acceptable" 
+#> [1] "Acceptable"
 #> 
 #> 
 #> $`Standard Deviation`
@@ -137,8 +134,15 @@ ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
 #> [1] 12.45931
 #> 
 #> $`Standard Deviation`$class
-#> [1] Excellent
-#> Levels: Excellent Acceptable Poor Problematic
+#> [1] "Excellent"
+#> 
+#> 
+#> $`Data Quality`
+#> $`Data Quality`$score
+#> [1] 1
+#> 
+#> $`Data Quality`$class
+#> [1] "Partially OK"
 ```
 
 ### Calculating acute malnutrition prevalence on a MUAC dataset

@@ -48,8 +48,7 @@ classify_age_ratio <- function(p) {
     labels = c("Problematic", "Poor", "Acceptable", "Excellent"),
     include.lowest = FALSE, right = TRUE
   ) |>
-    as.character() |>
-    (\(x) { names(x) <- "Age Ratio Class"; x } )()
+    as.character()
 }
 
 #'
@@ -64,8 +63,7 @@ classify_sex_ratio <- function(p) {
     labels = c("Problematic", "Poor", "Acceptable", "Excellent"),
     include.lowest = FALSE, right = TRUE
   ) |>
-    as.character() |>
-    (\(x) { names(x) <- "Sex Ratio Class"; x } )()
+    as.character()
 }
 
 
@@ -81,8 +79,7 @@ classify_sd <- function(std_dev) {
     labels = c("Excellent", "Acceptable", "Poor", "Problematic"),
     include.lowest = TRUE, right = FALSE
   ) |>
-    as.character() |>
-    (\(x) { names(x) <- "SD Class"; x } )()
+    as.character()
 }
 
 
@@ -101,12 +98,14 @@ classify_quality <- function(age_ratio_class,
   dps_score <- ifelse(dps_class == "Problematic", 8, 0)
 
   quality_score <- age_ratio_score + sex_ratio_score + std_dev_score + dps_score
+  names(quality_score) <- NULL
 
   quality_class <- dplyr::case_when(
     quality_score == 0 ~ "OK",
     quality_score <= 3 ~ "Partially OK",
     quality_score > 3 ~ "Not OK"
   )
+  names(quality_class) <- NULL
 
   list(q_score = quality_score, q_class = quality_class)
 }

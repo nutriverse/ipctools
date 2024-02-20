@@ -135,7 +135,10 @@ summarise_muac_check <- function(df, .summary = TRUE, .list = TRUE) {
         sex_ratio = nipnTK::sexRatioTest(.data$sex, codes = c(1, 2))$pM,
         sex_ratio_p = nipnTK::sexRatioTest(.data$sex, codes = c(1, 2))$p,
         digit_preference = nipnTK::digitPreference(.data$muac, digits = 0)$dps,
-        digit_preference_class = nipnTK::digitPreference(.data$muac, digits = 0)$dpsClass,
+        digit_preference_class = nipnTK::digitPreference(
+          .data$muac, digits = 0
+        )$dpsClass |>
+          (\(x) { names(x) <- NULL; x })(),
         std_dev = stats::sd(.data$muac, na.rm = TRUE),
         age_ratio_class = classify_age_ratio(.data$age_ratio_p),
         sex_ratio_class = classify_sex_ratio(.data$sex_ratio_p),
@@ -172,6 +175,10 @@ summarise_muac_check <- function(df, .summary = TRUE, .list = TRUE) {
         `Standard Deviation` = list(
           std_dev = muac_check$std_dev,
           class = muac_check$std_dev_class
+        ),
+        `Data Quality` = list(
+          score = muac_check$quality_score,
+          class = muac_check$quality_class
         )
       )
     } else {
