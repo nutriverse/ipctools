@@ -141,8 +141,7 @@ are used.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">age_ratio_p</span> <span class="op">&lt;-</span> <span class="fu">nipnTK</span><span class="fu">::</span><span class="fu"><a href="https://nutriverse.io/nipnTK/reference/ageRatioTest.html" class="external-link">ageRatioTest</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">muac_data</span><span class="op">$</span><span class="va">age</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p</span></span></span>
 <span class="r-in"><span><span class="fu">classify_age_ratio</span><span class="op">(</span><span class="va">age_ratio_p</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Age Ratio Class </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "Problematic" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Problematic"</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
