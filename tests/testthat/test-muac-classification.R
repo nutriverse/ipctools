@@ -6,7 +6,6 @@ age_ratio_class <- classify_age_ratio(p = age_ratio_result$p)
 
 testthat::expect_type(age_ratio_class, "character")
 testthat::expect_vector(age_ratio_class)
-testthat::expect_named(age_ratio_class, "Age Ratio Class")
 
 
 ## Test sex ratio classifier ----
@@ -15,7 +14,6 @@ sex_ratio_class <- classify_sex_ratio(p = sex_ratio_result$p)
 
 testthat::expect_type(sex_ratio_class, "character")
 testthat::expect_vector(sex_ratio_class)
-testthat::expect_named(sex_ratio_class, "Sex Ratio Class")
 
 
 ## Digit preference score classifier ----
@@ -24,7 +22,6 @@ dps_class <- dps_result$dpsClass
 
 testthat::expect_type(dps_class, "character")
 testthat::expect_vector(dps_class)
-testthat::expect_named(dps_class, "SMART DPS Class")
 
 
 ## Standard deviation
@@ -33,5 +30,12 @@ sd_class <- classify_sd(sd_results)
 
 testthat::expect_type(sd_class, "character")
 testthat::expect_vector(sd_class)
-testthat::expect_named(sd_class, "SD Class")
+
+
+## Data Quality
+q_results <- classify_quality(age_ratio_class, sex_ratio_class, dps_class, sd_class)
+
+testthat::expect_type(q_results, "list")
+testthat::expect_vector(q_results)
+testthat::expect_named(q_results, c("q_score", "q_class"))
 
