@@ -90,34 +90,7 @@ ipc_muac_check <- function(df,
     df <- df |> dplyr::mutate(muac = muac * 10)
   }
 
-#  if (.summary) {
-    summarise_muac_check(df, .summary = .summary, .list = .list)
-  # } else {
-  #   df |>
-  #     dplyr::mutate(
-  #       age_ratio = nipnTK::ageRatioTest(as.integer(!is.na(age)))$observedR,
-  #       age_ratio_p = nipnTK::ageRatioTest(as.integer(!is.na(age)))$p,
-  #       sex_ratio = nipnTK::sexRatioTest(sex, codes = c(1, 2))$pM,
-  #       sex_ratio_p = nipnTK::sexRatioTest(sex, codes = c(1, 2))$p,
-  #       digit_preference = nipnTK::digitPreference(muac, digits = 0)$dps,
-  #       digit_preference_class = nipnTK::digitPreference(muac, digits = 0)$dpsClass,
-  #       std_dev = stats::sd(muac, na.rm = TRUE),
-  #       age_ratio_class = classify_age_ratio(.data$age_ratio_p),
-  #       sex_ratio_class = classify_sex_ratio(.data$sex_ratio_p),
-  #       std_dev_class = classify_sd(.data$std_dev),
-  #       quality_score = classify_quality(
-  #         .data$age_ratio_class, .data$sex_ratio_class,
-  #         .data$std_dev_class, .data$digit_preference_class
-  #       )$q_score,
-  #       quality_class = classify_quality(
-  #         .data$age_ratio_class, .data$sex_ratio_class,
-  #         .data$std_dev_class, .data$digit_preference_class
-  #       )$q_class
-  #     ) |>
-  #     dplyr::relocate(.data$age_ratio_class, .after = "age_ratio_p") |>
-  #     dplyr::relocate(.data$sex_ratio_class, .after = "sex_ratio_p") |>
-  #     dplyr::relocate(.data$std_dev_class, .after = "std_dev")
-  # }
+  summarise_muac_check(df, .summary = .summary, .list = .list)
 }
 
 
@@ -146,7 +119,9 @@ summarise_muac_check <- function(df, .summary = TRUE, .list = TRUE) {
         quality_score = classify_quality(
           .data$age_ratio_class, .data$sex_ratio_class,
           .data$std_dev_class, .data$digit_preference_class
-        )$q_score,
+        )$q_score
+      ) |>
+      dplyr::mutate(
         quality_class = classify_quality(
           .data$age_ratio_class, .data$sex_ratio_class,
           .data$std_dev_class, .data$digit_preference_class
