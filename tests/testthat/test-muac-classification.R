@@ -24,7 +24,7 @@ testthat::expect_type(dps_class, "character")
 testthat::expect_vector(dps_class)
 
 
-## Standard deviation
+## Standard deviation ----
 sd_results <- sd(muac_data$muac)
 sd_class <- classify_sd(sd_results)
 
@@ -32,10 +32,21 @@ testthat::expect_type(sd_class, "character")
 testthat::expect_vector(sd_class)
 
 
-## Data Quality
+## Data Quality ----
 q_results <- classify_quality(age_ratio_class, sex_ratio_class, dps_class, sd_class)
 
 testthat::expect_type(q_results, "list")
 testthat::expect_vector(q_results)
 testthat::expect_named(q_results, c("q_score", "q_class"))
+
+
+## Classifying malnutrition ----
+wasting_class <- classify_acute_malnutrition(
+  muac_data$muac, muac_units = "cm",
+  oedema = muac_data$oedema,
+  oedema_recode = c(1, 2)
+)
+
+testthat::expect_type(wasting_class, "character")
+testthat::expect_vector(wasting_class)
 
