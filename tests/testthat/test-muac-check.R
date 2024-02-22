@@ -40,3 +40,20 @@ testthat::expect_true(
     "std_dev_class", "quality_score", "quality_class") %in% names(muac_check))
 )
 testthat::expect_equal(nrow(muac_check), nrow(muac_data))
+
+
+## Test check function - recode sex
+
+muac_check <- muac_data |>
+  dplyr::mutate(sex = ifelse(sex == 1, "m", "f")) |>
+  ipc_muac_check(
+    sex_recode = c("m", "f"), muac_units = "cm", oedema_recode = c(1, 2)
+  )
+
+testthat::expect_type(muac_check, "list")
+testthat::expect_vector(muac_check)
+testthat::expect_named(
+  muac_check,
+  c("Age Ratio", "Sex Ratio", "Digit Preference",
+    "Standard Deviation", "Data Quality")
+)
