@@ -26,7 +26,7 @@ Imports:
 Encoding: UTF-8
 LazyData: true
 Language: en-GB
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
 URL: https://nutriverse.io/ipctools/,
     https://github.com/nutriverse/ipctools,

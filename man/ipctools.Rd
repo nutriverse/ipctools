@@ -2,8 +2,8 @@
 % Please edit documentation in R/ipctools.R
 \docType{package}
 \name{ipctools}
-\alias{ipctools}
 \alias{ipctools-package}
+\alias{ipctools}
 \title{Utilities to Support Integrated Food Security Phase Classification (IPC) Data
 Analysis and Visualisation}
 \description{
