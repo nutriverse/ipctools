@@ -19,6 +19,9 @@
     <loc>http://nutriverse.io/ipctools/index.html</loc>
   </url>
   <url>
+    <loc>http://nutriverse.io/ipctools/reference/check_missing_muac.html</loc>
+  </url>
+  <url>
     <loc>http://nutriverse.io/ipctools/reference/index.html</loc>
   </url>
   <url>
@@ -35,5 +38,8 @@
   </url>
   <url>
     <loc>http://nutriverse.io/ipctools/reference/muac_data.html</loc>
+  </url>
+  <url>
+    <loc>http://nutriverse.io/ipctools/reference/process_muac.html</loc>
   </url>
 </urlset>
