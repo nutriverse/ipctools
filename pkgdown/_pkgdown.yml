@@ -4,56 +4,66 @@ url: http://nutriverse.io/ipctools/
 
 template:
   bootstrap: 5
-  bootswatch: lumen
+  bootswatch: cosmo
   theme: haddock
   ganalytics: #
 
 navbar:
-  bg: primary
+  bg: success
   type: light
   structure:
-    #left:  [home, intro, reference, articles, news]
-    left:  [home, reference]
-    #right: [linkedin, github]
+    left:  [home, intro, reference, articles, news]
+    right: [mastodon, linkedin, github]
 
-  # components:
-  #   articles:
-  #     text: Articles
-  #     menu:
-  #     - text: "Performing MUAC checks and calculating prevalence"
-  #       href: articles/muac_checks.html
-  #   linkedin:
-  #     icon: "fab fa-linkedin fa-lg"
-  #     href: https://www.linkedin.com/company/katilingban
+  components:
+    # articles:
+    #   text: Articles
+    #   menu:
+    #   - text: "Performing MUAC checks and calculating prevalence"
+    #     href: articles/muac_checks.html
+    mastodon:
+      icon: "fab fa-mastodon fa-lg"
+      href: https://fosstodon.org/@katilingban
+    linkedin:
+      icon: "fab fa-linkedin fa-lg"
+      href: https://www.linkedin.com/company/katilingban
 
 home:
-  #links:
-  #- text: Read more about haemoglobin concentrations for the diagnosis of anaemia and assessment of severity
-  #  href: https://www.who.int/vmnis/indicators/haemoglobin.pdf
+  links:
+  - text: Read more about the IPC
+    href: https://www.ipcinfo.org/
 
 reference:
   - title: Description
     contents:
     - ipctools
 
+  - title: Process anthropometric data
+    contents:
+    - process_muac_data
+
+  - title: Check for missing data
+    contents:
+    - check_missing_data
+
   - title: MUAC checks
     contents:
     - ipc_muac_check
     - summarise_muac_check
 
-  - title: MUAC prevalence
-    contents:
-    - ipc_calculate_prevalence
-    - calculate_unweighted_prevalence
-    - calculate_weighted_prevalence
-
-  - title: MUAC classification
+  - title: Classifiers
     contents:
     - classify_age_ratio
     - classify_sex_ratio
     - classify_sd
     - classify_quality
     - classify_acute_malnutrition
+
+  - title: MUAC prevalence
+    contents:
+    - ipc_calculate_prevalence
+    - calculate_unweighted_prevalence
+    - calculate_weighted_prevalence
 
   - title: Datasets
     contents:
