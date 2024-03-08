@@ -8,12 +8,13 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+  fig.path = "man/figures/README-"
 )
+
+library(ipctools)
 ```
 
-# ipctools: Utilities to Support Integrated Food Security Phase Classification (IPC) Data Analysis and Visualisation
+# ipctools: Utilities to Support Integrated Food Security Phase Classification (IPC) Data Processing and Visualisation
 
 <!-- badges: start -->
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
@@ -36,20 +37,13 @@ In addition, it is planned to include a set of functions that would wrap around 
 
 ## Installation
 
-`ipctools` is not yet on CRAN.
+`ipctools` is not yet on CRAN but can be installed from the [nutriverse R universe](https://nutriverse.r-universe.dev) as follows:
 
-You can install the development version of `ipctools` from [GitHub](https://github.com/nutriverse/ipctools) with:
-
-```{r gh-installation1, eval = FALSE}
-if(!require(remotes)) install.packages("remotes")
-remotes::install_github("nutriverse/ipctools")
-```
-
-then load `ipctools`
-
-```{r gh-installation2, eval = TRUE}
-# load package
-library(ipctools)
+```{r install, eval = FALSE}
+install.packages(
+  "ipctools",
+  repos = c("https://nutriverse.r-universe.dev", "https://cloud.r-project.org")
+)
 ```
 
 ## Usage
@@ -66,10 +60,35 @@ For nutrition survey datasets that include MUAC measurements, the IPC recommends
 
 4. **Standard deviation** - The standard deviation of the MUAC measurements.
 
-These checks can be performed using the `ipc_muac_check()` function as follows:
+`ipctools` provides a set of functions that operate on a given anthropometric dataset containing at least age, sex, and MUAC measurements of children (if present, oedema information is also processed) to provide an assessment of data quality.
+
+The following diagram illustrates how this process/workflow using the `ipctools` functions:
+
+```{r, results = "asis"}
+  "```mermaid
+  graph TD;
+    'Process dataset using process_muac_data()' --> 'Check for missing data using check_missing_data()'
+    'Check for missing data using check_missing_data()' --> 'A tibble showing number and proportion of missing data per variable'
+    'Check for missing data using check_missing_data()' --> 'Check data quality using ipc_muac_checks()'
+    'Check data quality using ipc_muac_checks()' --> 'A list of data quality checks performed and their results'
+  ```"
+```
+
+The functions in `ipctools` are pipe-friendly hence the workflow described above can be done through piped operations as follows:
 
 ```{r ipc-checks}
-ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
+## Check for missing data ----
+muac_data |>
+  process_muac_data() |>
+  check_missing_data()
+
+## Check data quality ----
+muac_data |>
+  process_muac_data() |>
+  ipc_muac_check(
+    muac_units = "cm",
+    oedema_recode = c(1, 2)
+  )
 ```
 
 ### Calculating acute malnutrition prevalence on a MUAC dataset
@@ -77,11 +96,13 @@ ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
 The IPC-recommended approach to calculating prevalence of acute malnutrition based on MUAC is to perform a weighted analysis when either the age ratio test or the sex ratio test is problematic. For example, based on the MUAC check shown above, the example dataset `muac_data` has some issues with its age ratio and sex ratio. To calculate acute malnutrition prevalence from this dataset, a weighted analysis will have to be implemented. This can be done using the `ipc_calculate_prevalence()` function as follows:
 
 ```{r ipc-prevalence}
-ipc_muac_check(
-  df = muac_data, muac_units = "cm", 
-  oedema_recode = c(1, 2), 
-  .summary = FALSE
-) |>
+muac_data |>
+  process_muac_data() |>
+  ipc_muac_check(
+    muac_units = "cm", 
+    oedema_recode = c(1, 2),
+    .summary = FALSE
+  ) |>
   ipc_calculate_prevalence()
 ```
 
