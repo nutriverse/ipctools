@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ipctools: Utilities to Support Integrated Food Security Phase Classification (IPC) Data Analysis and Visualisation
+# ipctools: Utilities to Support Integrated Food Security Phase Classification (IPC) Data Processing and Visualisation
 
 <!-- badges: start -->
 
@@ -50,21 +50,14 @@ whether this plan will come to fruition.
 
 ## Installation
 
-`ipctools` is not yet on CRAN.
-
-You can install the development version of `ipctools` from
-[GitHub](https://github.com/nutriverse/ipctools) with:
+`ipctools` is not yet on CRAN but can be installed from the [nutriverse
+R universe](https://nutriverse.r-universe.dev) as follows:
 
 ``` r
-if(!require(remotes)) install.packages("remotes")
-remotes::install_github("nutriverse/ipctools")
-```
-
-then load `ipctools`
-
-``` r
-# load package
-library(ipctools)
+install.packages(
+  "ipctools",
+  repos = c("https://nutriverse.r-universe.dev", "https://cloud.r-project.org")
+)
 ```
 
 ## Usage
@@ -93,11 +86,49 @@ recommends that the following tests be performed:
 4.  **Standard deviation** - The standard deviation of the MUAC
     measurements.
 
-These checks can be performed using the `ipc_muac_check()` function as
-follows:
+`ipctools` provides a set of functions that operate on a given
+anthropometric dataset containing at least age, sex, and MUAC
+measurements of children (if present, oedema information is also
+processed) to provide an assessment of data quality.
+
+The following diagram illustrates how this process/workflow using the
+`ipctools` functions:
 
 ``` r
-ipc_muac_check(df = muac_data, muac_units = "cm", oedema_recode = c(1, 2))
+  "```mermaid
+  graph TD;
+    'Process dataset using process_muac_data()' --> 'Check for missing data using check_missing_data()'
+    'Check for missing data using check_missing_data()' --> 'A tibble showing number and proportion of missing data per variable'
+    'Check for missing data using check_missing_data()' --> 'Check data quality using ipc_muac_checks()'
+    'Check data quality using ipc_muac_checks()' --> 'A list of data quality checks performed and their results'
+  ```"
+```
+
+\[1\]
+“`mermaid\n  graph TD;\n    'Process dataset using process_muac_data()' --> 'Check for missing data using check_missing_data()'\n    'Check for missing data using check_missing_data()' --> 'A tibble showing number and proportion of missing data per variable'\n    'Check for missing data using check_missing_data()' --> 'Check data quality using ipc_muac_checks()'\n    'Check data quality using ipc_muac_checks()' --> 'A list of data quality checks performed and their results'\n`”
+
+The functions in `ipctools` are pipe-friendly hence the workflow
+described above can be done through piped operations as follows:
+
+``` r
+## Check for missing data ----
+muac_data |>
+  process_muac_data() |>
+  check_missing_data()
+#> # A tibble: 1 × 8
+#>   n_missing_sex p_missing_sex n_missing_age p_missing_age n_missing_muac
+#>           <int>         <dbl>         <int>         <dbl>          <int>
+#> 1             0             0             0             0              0
+#> # ℹ 3 more variables: p_missing_muac <dbl>, n_missing_oedema <int>,
+#> #   p_missing_oedema <dbl>
+
+## Check data quality ----
+muac_data |>
+  process_muac_data() |>
+  ipc_muac_check(
+    muac_units = "cm",
+    oedema_recode = c(1, 2)
+  )
 #> $`Age Ratio`
 #> $`Age Ratio`$ratio
 #> [1] Inf
@@ -157,13 +188,15 @@ to be implemented. This can be done using the
 `ipc_calculate_prevalence()` function as follows:
 
 ``` r
-ipc_muac_check(
-  df = muac_data, muac_units = "cm", 
-  oedema_recode = c(1, 2), 
-  .summary = FALSE
-) |>
+muac_data |>
+  process_muac_data() |>
+  ipc_muac_check(
+    muac_units = "cm", 
+    oedema_recode = c(1, 2),
+    .summary = FALSE
+  ) |>
   ipc_calculate_prevalence()
-#> [1] 0.2179668
+#> [1] 0.1768535
 ```
 
 ## Citation
