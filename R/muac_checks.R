@@ -80,30 +80,6 @@ ipc_muac_check <- function(df,
     summarise_muac_check(.summary = .summary, .list = .list)
 }
 
-
-
-
-#'
-#' @rdname ipc_muac_check
-#' @export
-#'
-check_missing_data <- function(df) {
-  df |>
-    dplyr::summarise(
-      n_missing_sex = sum(is.na(.data$sex)),
-      p_missing_sex = .data$n_missing_sex / dplyr::n(),
-      n_missing_age = sum(is.na(.data$age)),
-      p_missing_age = .data$n_missing_age / dplyr::n(),
-      n_missing_muac = sum(is.na(.data$muac)),
-      p_missing_muac = .data$n_missing_muac / dplyr::n(),
-      n_missing_oedema = sum(is.na(.data$oedema)),
-      p_missing_oedema = .data$n_missing_oedema / dplyr::n(),
-      .groups = "drop"
-    )
-}
-
-
-
 #'
 #' @rdname ipc_muac_check
 #' @export
@@ -177,7 +153,9 @@ summarise_muac_check <- function(df, .summary = TRUE, .list = TRUE) {
         sex_ratio = nipnTK::sexRatioTest(.data$sex, codes = c(1, 2))$pM,
         sex_ratio_p = nipnTK::sexRatioTest(.data$sex, codes = c(1, 2))$p,
         digit_preference = nipnTK::digitPreference(.data$muac, digits = 0)$dps,
-        digit_preference_class = nipnTK::digitPreference(.data$muac, digits = 0)$dpsClass,
+        digit_preference_class = nipnTK::digitPreference(
+          .data$muac, digits = 0
+        )$dpsClass,
         std_dev = stats::sd(.data$muac, na.rm = TRUE),
         age_ratio_class = classify_age_ratio(.data$age_ratio_p),
         sex_ratio_class = classify_sex_ratio(.data$sex_ratio_p),

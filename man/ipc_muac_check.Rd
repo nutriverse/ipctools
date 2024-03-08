@@ -2,7 +2,6 @@
 % Please edit documentation in R/muac_checks.R
 \name{ipc_muac_check}
 \alias{ipc_muac_check}
-\alias{check_missing_data}
 \alias{summarise_muac_check}
 \title{Perform MUAC check based on IPC and CDC recommendations}
 \usage{
@@ -18,8 +17,6 @@ ipc_muac_check(
   .summary = TRUE,
   .list = TRUE
 )
-
-check_missing_data(df)
 
 summarise_muac_check(df, .summary = TRUE, .list = TRUE)
 }
