@@ -64,14 +64,8 @@ For nutrition survey datasets that include MUAC measurements, the IPC recommends
 
 The following diagram illustrates how this process/workflow using the `ipctools` functions:
 
-```{r, results = "asis"}
-  "```mermaid
-  graph TD;
-    'Process dataset using process_muac_data()' --> 'Check for missing data using check_missing_data()'
-    'Check for missing data using check_missing_data()' --> 'A tibble showing number and proportion of missing data per variable'
-    'Check for missing data using check_missing_data()' --> 'Check data quality using ipc_muac_checks()'
-    'Check data quality using ipc_muac_checks()' --> 'A list of data quality checks performed and their results'
-  ```"
+```{r ipctools-workflow, echo = FALSE, fig.align = "center"}
+knitr::include_graphics("https://github.com/nutriverse/ipctools/assets/5742010/68f0425a-ec51-48f0-8cd2-c0ea50f18e6f")
 ```
 
 The functions in `ipctools` are pipe-friendly hence the workflow described above can be done through piped operations as follows:

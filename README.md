@@ -94,18 +94,7 @@ processed) to provide an assessment of data quality.
 The following diagram illustrates how this process/workflow using the
 `ipctools` functions:
 
-``` r
-  "```mermaid
-  graph TD;
-    'Process dataset using process_muac_data()' --> 'Check for missing data using check_missing_data()'
-    'Check for missing data using check_missing_data()' --> 'A tibble showing number and proportion of missing data per variable'
-    'Check for missing data using check_missing_data()' --> 'Check data quality using ipc_muac_checks()'
-    'Check data quality using ipc_muac_checks()' --> 'A list of data quality checks performed and their results'
-  ```"
-```
-
-\[1\]
-“`mermaid\n  graph TD;\n    'Process dataset using process_muac_data()' --> 'Check for missing data using check_missing_data()'\n    'Check for missing data using check_missing_data()' --> 'A tibble showing number and proportion of missing data per variable'\n    'Check for missing data using check_missing_data()' --> 'Check data quality using ipc_muac_checks()'\n    'Check data quality using ipc_muac_checks()' --> 'A list of data quality checks performed and their results'\n`”
+<img src="https://github.com/nutriverse/ipctools/assets/5742010/68f0425a-ec51-48f0-8cd2-c0ea50f18e6f" style="display: block; margin: auto;" />
 
 The functions in `ipctools` are pipe-friendly hence the workflow
 described above can be done through piped operations as follows:
