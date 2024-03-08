@@ -23,7 +23,8 @@
 #' @param oedema A character value for name of variable in `df` for oedema
 #'   status of child. The expected values for `oedema` is 1 = for presence of
 #'   oedema and 2 for no oedema. If data values are different, use
-#'   `oedema_recode` to map out the values to what is required.
+#'   `oedema_recode` to map out the values to what is required. If dataset
+#'   does not have oedema values, set this to NULL.
 #' @param oedema_recode A vector of values with length of 2 with the first
 #'   element for the value signifying presence of oedema and second element for
 #'   the value signifying no oedema in the dataset. For example, if "y" is the
@@ -64,34 +65,43 @@ ipc_muac_check <- function(df,
                            oedema_recode = NULL,
                            .summary = TRUE,
                            .list = TRUE) {
-  ## Determine MUAC units ----
-  muac_units <- match.arg(muac_units)
-
-  ## Retrieve required variables ----
-  df <- df |>
-    dplyr::rename(
-      age = !!age,
-      sex = !!sex,
-      oedema = !!oedema,
-      muac = !!muac
-    )
-
-  if (!is.null(sex_recode)) {
-    df <- df |>
-      dplyr::mutate(sex = ifelse(sex == sex_recode[1], 1, 2))
-  }
-
-  if (!is.null(oedema_recode)) {
-    df <- df |>
-      dplyr::mutate(oedema = ifelse(oedema == oedema_recode[1], 1, 0))
-  }
-
-  if (muac_units == "cm") {
-    df <- df |> dplyr::mutate(muac = muac * 10)
-  }
-
-  summarise_muac_check(df, .summary = .summary, .list = .list)
+  ## Process muac data ----
+  process_muac_data(
+    df,
+    age = age,
+    sex = sex,
+    sex_recode = sex_recode,
+    muac = muac,
+    muac_units = muac_units,
+    oedema = oedema,
+    oedema_recode = oedema_recode
+  ) |>
+    ## Perform MUAC check ----
+    summarise_muac_check(.summary = .summary, .list = .list)
 }
+
+
+
+
+#'
+#' @rdname ipc_muac_check
+#' @export
+#'
+check_missing_data <- function(df) {
+  df |>
+    dplyr::summarise(
+      n_missing_sex = sum(is.na(.data$sex)),
+      p_missing_sex = .data$n_missing_sex / dplyr::n(),
+      n_missing_age = sum(is.na(.data$age)),
+      p_missing_age = .data$n_missing_age / dplyr::n(),
+      n_missing_muac = sum(is.na(.data$muac)),
+      p_missing_muac = .data$n_missing_muac / dplyr::n(),
+      n_missing_oedema = sum(is.na(.data$oedema)),
+      p_missing_oedema = .data$n_missing_oedema / dplyr::n(),
+      .groups = "drop"
+    )
+}
+
 
 
 #'
