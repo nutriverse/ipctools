@@ -121,17 +121,9 @@
 </ol>
 <p><code>ipctools</code> provides a set of functions that operate on a given anthropometric dataset containing at least age, sex, and MUAC measurements of children (if present, oedema information is also processed) to provide an assessment of data quality.</p>
 <p>The following diagram illustrates how this process/workflow using the <code>ipctools</code> functions:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span>  <span class="st">"```mermaid</span></span>
-<span><span class="st">  graph TD;</span></span>
-<span><span class="st">    'Process dataset using process_muac_data()' --&gt; 'Check for missing data using check_missing_data()'</span></span>
-<span><span class="st">    'Check for missing data using check_missing_data()' --&gt; 'A tibble showing number and proportion of missing data per variable'</span></span>
-<span><span class="st">    'Check for missing data using check_missing_data()' --&gt; 'Check data quality using ipc_muac_checks()'</span></span>
-<span><span class="st">    'Check data quality using ipc_muac_checks()' --&gt; 'A list of data quality checks performed and their results'</span></span>
-<span><span class="st">  ```"</span></span></code></pre></div>
-<p>[1] “<code>mermaid\n  graph TD;\n    'Process dataset using process_muac_data()' --&gt; 'Check for missing data using check_missing_data()'\n    'Check for missing data using check_missing_data()' --&gt; 'A tibble showing number and proportion of missing data per variable'\n    'Check for missing data using check_missing_data()' --&gt; 'Check data quality using ipc_muac_checks()'\n    'Check data quality using ipc_muac_checks()' --&gt; 'A list of data quality checks performed and their results'\n</code>”</p>
+<p><img src="https://github.com/nutriverse/ipctools/assets/5742010/68f0425a-ec51-48f0-8cd2-c0ea50f18e6f" style="display: block; margin: auto;"></p>
 <p>The functions in <code>ipctools</code> are pipe-friendly hence the workflow described above can be done through piped operations as follows:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## Check for missing data ----</span></span>
 <span><span class="va">muac_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/process_muac.html">process_muac_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -200,7 +192,7 @@
 <h3 id="calculating-acute-malnutrition-prevalence-on-a-muac-dataset">Calculating acute malnutrition prevalence on a MUAC dataset<a class="anchor" aria-label="anchor" href="#calculating-acute-malnutrition-prevalence-on-a-muac-dataset"></a>
 </h3>
 <p>The IPC-recommended approach to calculating prevalence of acute malnutrition based on MUAC is to perform a weighted analysis when either the age ratio test or the sex ratio test is problematic. For example, based on the MUAC check shown above, the example dataset <code>muac_data</code> has some issues with its age ratio and sex ratio. To calculate acute malnutrition prevalence from this dataset, a weighted analysis will have to be implemented. This can be done using the <code><a href="reference/ipc_prevalence.html">ipc_calculate_prevalence()</a></code> function as follows:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">muac_data</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/process_muac.html">process_muac_data</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="reference/ipc_muac_check.html">ipc_muac_check</a></span><span class="op">(</span></span>
@@ -216,7 +208,7 @@
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
 <p>If you find the <code>ipctools</code> package useful please cite using the suggested citation provided by a call to the <code><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation()</a></code> function as follows:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"ipctools"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; To cite ipctools in publications use:</span></span>
 <span><span class="co">#&gt; </span></span>
